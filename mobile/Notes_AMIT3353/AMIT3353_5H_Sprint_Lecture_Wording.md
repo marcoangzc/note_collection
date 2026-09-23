@@ -7,6 +7,7 @@
 > - 中文只用来说明"怎么用"，不改老师的英文。
 >
 > 顺序按**两份考卷合计分数**由高到低排，时间不够就从上往下读。
+> §12 收录 **past year 没考过** 但 slide 有教的理论（同样用老师原句），有剩时间再读。
 
 ---
 
@@ -23,6 +24,7 @@
 | 3:20–3:50 | §8 Location | 18 | 背 GPS vs Wi-Fi 表、foreground vs background 表 |
 | 3:50–4:20 | §9 Distribution + monetisation + §10 Design for everyone / notifications | 19 + 19 | 背 8 种 monetisation 的关键字 |
 | 4:20–5:00 | §11 最后 40 分钟 | | 不看笔记，把 §11 的 20 条默写一次 |
+| 有多余时间 / 考前一天 | §12 没考过的理论 | 0（没出过） | 读 slide 原句，最后默写 §12.11 的 10 条 |
 
 **答题规则（这门课的评分习惯）**：每一点 = **slide 原句的概念名 + slide 原句的解释 + 套到 MyGOV/ELSA 的一句**。分数 ÷ 3 ≈ 要写几点。题目说 "in a table format" 就画表，"using a diagram" 就画图。
 
@@ -401,6 +403,391 @@ States 表（p47）：Resumed（visible, interaction yes）· Paused（partially
 18. Foreground vs Background：**Once·predefined/Constant · Visible/Not visible · Notification Yes/No**
 19. App Bundles："APK generation and signing … deferred"；"**Dynamic Delivery** … generate an APK according to user's device configuration"
 20. Monetisation 8 种：Premium, Freemium, Subscription, Ads, E-Commerce, Rewarded Products, **Service ("An extension of physical/online services")**, Data Collection
+
+---
+
+## 12. 没考过但 slide 有教的理论（全部放进来，按章节排）
+
+> 这一节是 **past year 没出过** 的理论。5 小时内先把 §1–§11 读完；有剩时间（或考前一天）再读这里。
+> 写法一样：📖 是 slide 原句，考试照抄关键字；✍️ 是万一考到的写法；⚠️ 是 slide 写错或过时的地方。
+> 没写页码的条目只标章节（例如 "2.1"），因为那几页 slide 只有关键字、没有完整句子。
+
+---
+
+### 12.1 Chapter 1 — Introduction
+
+**A. Types of apps（1 p6）** 📖
+
+| | Native | Hybrid | Mobile Web |
+|---|---|---|---|
+| Cost | High | Low | Low |
+| Performance | Fast | Depends on network | Depends on network |
+| Distribution | App stores | App stores | None |
+| Device features | Wide | Limited | Very limited |
+| Code maintenance | Multiple codebase | Single codebase | Single codebase |
+
+✍️ 题目问 "which type of app for X" → 用表里的字眼比较 2–3 行，再给结论（例如 MyGOV 要用 camera / GPS → **Native**，因为 "Device features: Wide"、"Performance: Fast"）。
+
+**B. APK（1 p34）** 📖 An APK contains: **Compiled Code, Data, Resources**.
+
+**C. Security sandbox（1 p35）** 📖
+- "Each Android app lives in its own **security sandbox**"
+- "Each app is a different user to the OS"
+- "The system assigns each app a **unique Linux ID**"
+- "Each app runs in its own **Linux process**"
+- "Each process has its own **virtual machine (VM)**"
+
+**D. Principle of Least Privilege（1 p37）** 📖 "Each app, by default, has access only to the components that it requires to do its work **and no more**"；"An app cannot access parts of the system for which it is **not given permission**"
+
+**E. Permissions（1 p40）** 📖 "All app permissions must be granted by the user **at install time (version 5 and below)** or **during runtime (version 6** and above)"
+
+**F. App components — ABCS（1 p44–50）** 📖
+
+| Component | Slide 原句 |
+|---|---|
+| **A**ctivity | "An activity = a screen" (with a UI) |
+| **B**roadcast Receiver | "A messaging system used by the system and apps"; "No UI" |
+| **C**ontent Provider | "Manages access to a central repository of data" |
+| **S**ervice | "No UI. Runs in the background. Performs long-running operations" |
+
+**G. Manifest（1 p56–58）** 📖
+- "The **first file read by the Android** before it starts an app component"
+- "Components NOT declared in the manifest can **NEVER run**"
+- Contains: **Permission, Minimum API level, Hardware and software features used, App components, Linked libraries**
+- Permission = "A restriction limiting access to code, data … **Protects critical data and code from misuse or damage**"
+
+---
+
+### 12.2 Chapter 2.1 — User Interface（Layout 与 UI components）
+
+**A. Compose basics（2.1）** 📖 **Row, Column, Box, Modifier, Divider**
+
+**B. ViewGroup / Layout 分类（2.1）** 📖
+- **Static**: Row & Column；**Constraint Layout** ("flat view hierarchy")；Web Layout
+- **Dynamic**: **Lazy List**, **Lazy Grid**
+- View — "Also called **widget**"
+
+**C. List 类（2.1）** 📖
+- ListView vs **LazyList**（Compose 版）
+- RecyclerView — "item's views are **recycled**"
+- Card-based Layout
+
+**D. UI Components（2.1）** 📖
+
+| Component | Slide 原句 |
+|---|---|
+| Button | Button / ImageButton |
+| Text Field | 用 `keyboardType` 决定键盘（text, number, phone, email, password …） |
+| Check Box | "select **one or more** options" |
+| Radio Button | "select **one option** … **mutually exclusive**" |
+| Spinner | "quick way to **select one value from a set**" |
+
+✍️ 题目问 "suggest UI components for a form" → 每个 field 配一个 component + slide 原句当理由（例如 ELSA 选 level：Radio Button — "select one option … mutually exclusive"）。
+
+**E. Style and Theme（2.1）** 📖 Compose 用 **MaterialTheme**（colors, typography, shapes）。
+
+**F. Dark Theme（2.1）** 📖 "Available in **Android 10**"
+- "**Reduces power usage**"
+- "**Improves visibility**"
+- "**Easier to use in a low-light environment**"
+- 用 **DayNight** theme
+
+---
+
+### 12.3 Chapter 2.2 — Fragment and Navigation
+
+**A. Navigation Principles（2.2）** 📖（5 条，建议整句背）
+1. **Fixed start destination**
+2. **Navigation state is represented as a stack of destinations**
+3. **Up and Back are identical within your app's task**
+4. **The Up button never exits your app**
+5. **Deep linking simulates manual navigation**
+
+**B. Fragment（2.2）** 📖 用于 **multi-pane** UI：landscape（大屏）显示两个 pane，portrait 显示一个。现在 Compose 可以直接做到，所以 slide 有一张 Compose vs Fragments 的比较表。
+
+**C. Navigation Component（2.2）** 📖
+
+| 部分 | Slide 原句 |
+|---|---|
+| Navigation Graph | "**XML resource** that contains all navigation-related information" |
+| NavHost | "An **empty container** that displays destinations from your navigation graph" |
+| NavController | "An object that **manages app navigation within a NavHost**" |
+
+Compose 版：`NavHost` + `NavController` + `composable` destinations。
+
+**D. Dialogs（2.2）** 📖
+- Used to show "**critical information**, **make decisions**, **encapsulate multiple tasks**"
+- "**Use it sparingly because they are interruptive**"
+- Types: **Alert / Simple / Confirmation / Full screen**
+- AlertDialog（p47）："1. **Title** (optional) 2. **Content area** 3. **Action buttons**: There should be **no more than three** action buttons in a dialog"
+- **Avoid opening additional dialogs** from a dialog
+
+**E. Navigation Drawer（2.2）** 📖 "Displays the app's **main navigation options**". Recommended for:
+- ">= **5** top-level destinations"
+- ">= **2** levels of navigation hierarchy"
+- "**quick navigation between unrelated destinations**"
+
+**F. Tabs（2.2）** 📖 "organizes and allows navigation between **groups of content**"；"content should be **related** and at the **same level of hierarchy**"；types **Fixed / Scrollable**。
+
+✍️ 题目问 "Navigation Drawer or Tabs?" → 用上面两组条件比：MyGOV 有很多不相关的服务（≥5 top-level）→ Navigation Drawer；同一服务里的几个同层页面 → Tabs。
+
+---
+
+### 12.4 Chapter 2.3 — Menus, Accessibility
+
+**A. Menus（2.3）** 📖 "Presents **actions and options** to user"；"Presented using the **Toolbar** widget"。
+放在 app bar 上的 action 用 **FIT** scheme 决定：**F**requent, **I**mportant, **T**ypical。
+
+**B. Up button（2.3）** 📖 "Helps users to **find their way back to the app's main screen**"；"a child activity must **declare its parent in the manifest**"。
+
+**C. Accessibility（2.3）** 📖 "**Regardless of ability**, users are able to **navigate, understand, and use** an app successfully"
+Considerations: **Navigation / Readability / Guidance and Feedback**
+
+6 个做法（背标题 + 括号里的关键字）：
+1. **Support screen readers**（label UI elements, group related content）
+2. **Easy-to-follow navigation**（keyboard / gestures, no fading UI, flat navigation）
+3. **Large touch targets**（min **48 x 48**, spacing **8dp**）
+4. **Adequate colour contrast**（use more than colour to convey information）
+5. **Media content accessible**（pause / stop controls, transcript / caption）
+6. **Interactive controls clear and discoverable**
+
+⚠️ Slide 写 "48 x 48 **pixel**"，Android 官方单位是 **dp**。考试写 "**48 x 48 dp**" 最安全。
+
+✍️ 例子：ELSA 的发音按钮 → "Large touch targets, min 48 x 48 dp"；练习影片 → "Media content accessible: provide caption / transcript"。
+
+**D. Gesture navigation（2.3）** 📖 **Android 10**：app 要 **edge to edge**，并 **handle conflicting gestures**。
+
+**E. Display cutouts（2.3）** 📖 **Android 9**，modes：**Default / Short Edges / Never**。
+
+---
+
+### 12.5 Chapter 3 — Application Models（Activity 细节）
+
+**A. Activity（3）** 📖 "Activity = UI"；"**main activity** is the first UI"；"must be **declared in the Manifest**"；结束用 `finish()` / `finishActivity()`。
+
+**B. Back stack（3）** 📖 "**last in, first out**"（LIFO）。
+
+**C. Getting a result from an activity（3）** 📖 `startActivityForResult()`（**deprecated**）+ `onActivityResult()` → 现在用 **Activity Result API**。
+
+**D. Configuration change（3）** 📖 例如 rotate screen → "**Current activity will be destroyed**" and recreated。
+
+**E. Saving instance state（3）** 📖
+- "**Instance state** = the saved data that the system uses to restore the previous state"
+- "**key-value pairs** stored in a **Bundle** object"
+- `onSaveInstanceState()` / `onRestoreInstanceState()`
+
+**F. Compose lifecycle（3）** 📖 `LaunchedEffect`, `rememberCoroutineScope`。
+
+✍️ 题目问 "user rotates phone and data disappears, why and how to fix?" → configuration change → "Current activity will be destroyed" → save in **Bundle** via `onSaveInstanceState()`，或用 **ViewModel**（"It survive configuration changes"，见 12.6）。
+
+---
+
+### 12.6 Chapter 4.1 — Data Storage（进阶）
+
+**A. SharedPreferences（4.1）** 📖
+
+| Method | 用在 |
+|---|---|
+| `getSharedPreferences()` | **multiple** preference files，从 any **Context** |
+| `getPreferences()` | **single** file，只给这个 **Activity** |
+
+新版替代品：**DataStore**。
+
+**B. External storage（4.1 p17）** 📖 Two types of files：
+
+| Characteristics | Public | Private |
+|---|---|---|
+| Accessibility | All apps | Specific app |
+| State after uninstallation of app | Available | Deleted |
+
+**C. SQLite data types（4.1）** 📖 **NULL, INTEGER, REAL, TEXT, BLOB**
+
+**D. Room（4.1）** 📖
+- **Database**: "access point to DB"
+- **Entity**: "table"
+- **DAO**: "methods to access DB"
+- "**Don't use Room … on the UI thread**"
+
+**E. Architecture Components（4.1）** 📖
+
+| 部分 | Slide 原句 |
+|---|---|
+| ViewModel | "Provide data for UI components"；"It **survive configuration changes**" |
+| Repository | "provides access to **multiple data sources**"；"manages query threads" |
+| LiveData | "An **observable** data holder class"；"**lifecycle-aware**" |
+| StateFlow | Compose 常用的 observable state |
+
+**F. Coroutine（4.1）** 📖 "Manage **long-running tasks** that might otherwise **block the main thread**"；提供 "**main-safety**"。
+- `launch`（不回传结果）vs `async`（回传结果）
+- Scopes: **GlobalScope, LifecycleScope, ViewModelScope**
+
+**G. SQL vs NoSQL（4.1）** 📖 NoSQL 例子：**Firebase**；NoSQL 类型：**Document, Key-Value, Graph, Wide-Column**。
+
+---
+
+### 12.7 Chapter 4.2 — Network and Server（进阶）
+
+**A. Communication protocols（4.2）** 📖 **SOAP, REST, XML-RPC**
+- REST: "Supports **HTML, XML and JSON**"；"Inherits HTTP operations **GET, POST, PUT and DELETE**"
+- SOAP: "**XML**"；"works with **HTTP, SMTP, TCP or UDP**"
+- "**JSON is faster and easier than XML**"；Android 用 `JSONObject` 解析
+
+**B. NetworkOnMainThreadException（4.2）** 📖 在 main thread 做 network 会丢这个 exception → 要放到 background（coroutine / Volley）。
+
+**C. AsyncTask（4.2）** 📖 "performs **background operations** and **publish results on UI thread**"；3 步：`onPreExecute()` → `doInBackground()` → `onPostExecute()`；"Suitable for **short operations**"。
+⚠️ AsyncTask 已 **deprecated**（Android 11）。考试写完 slide 定义后补一句 "now replaced by **Kotlin coroutines**"。
+
+**D. Volley（4.2）** 📖 "**HTTP library**"；"**Not suitable for large download or streaming**"
+- Benefits: "**Automatic scheduling**, **Multiple concurrent network connections**, **request prioritization**, **cancellation**"
+- Requests: `StringRequest`, `JsonObjectRequest`, `JsonArrayRequest`
+- 用 **singleton** `RequestQueue`
+
+**E. Network best practices（4.2）** 📖 "**Minimize** the amount of **sensitive data** you transmit"；"Send all network traffic over **Secure Socket Layer (SSL)**"；permissions `INTERNET` 和 `ACCESS_NETWORK_STATE`。
+
+**F. MQTT（4.2）** 📖 "Works on top of **TCP/IP**"；"**machine-to-machine**"；"**publish/subscribe**"。
+
+**G. Backend（4.2）** 📖 Core functions: **Application server, Web server, Database**；popular backends: Ruby on Rails, Express, Django, PHP MVC, Firebase。
+
+**H. Subscribe methods（4.2）** 📖
+- **Cloud**: "delivery of **on-demand computing resources over the internet** on a **pay-for-use** basis"
+- **Container**
+- **Virtualisation**
+
+---
+
+### 12.8 Chapter 5 — Location（进阶）
+
+**A. Battery drain（5 p7）** 📖 "Location gathering and battery drain are affected by: **Accuracy, Latency, Frequency**"
+
+**B. Accuracy（5 p8, p12）** 📖 "Accuracy = the **precision of the location data**"；"**The higher the accuracy, the higher the battery drain**"
+
+| Priority | Precision | Hardware | Power |
+|---|---|---|---|
+| High Accuracy | Most precise location possible | GPS | High |
+| Balanced Power | City block (**100 m**) | Wi-Fi or cell tower | Less |
+| Low Power | City-level (**10 km**) | Wi-Fi or cell tower | Less |
+| No Power | "Receives locations from other apps" | None | Very minimum |
+
+**C. Frequency（5 p13–14）** 📖
+- `setInterval()` — "Sets the rate in milliseconds"；"Use the **largest possible value for background** location"；"Use **small value for foreground**"
+- `setFastestInterval()` — "Sets the fastest rate or the upper limit"；"Must be set to **prevent UI flicker or data overflow**"
+- `setPriority()` — "Sets the priority of the request"
+
+**D. Latency（5 p15）** 📖 `setMaxWaitTime()` — "**delays location delivery**"；"set a value **several times larger than the setInterval()**"
+
+✍️ Slide 5.1 Question（p17）"Identify a location model for a. mapping b. weather c. retailer proximity d. fitness"：
+
+| App | Accuracy | Frequency | Latency |
+|---|---|---|---|
+| Mapping | High Accuracy | small interval (foreground) | low（立刻送） |
+| Weather | Low Power（city-level 10 km 已够） | large interval | high（可 batch） |
+| Retailer proximity | Balanced Power（100 m） | medium | medium |
+| Fitness tracking | High Accuracy | small interval | low–medium |
+
+**E. Location best practices（5 p20–24）** 📖
+1. **Remove location updates** — `requestLocationUpdates()` in `onStart()/onResume()`；`removeLocationUpdates()` in `onPause()/onStop()`
+2. **Set timeouts** — `setExpirationDuration()` / `setExpirationTime()`
+3. **Batch requests** — "Batch multiple requests together"；"Suitable for **non-foreground** use cases"
+4. **Passive location updates** — "Obtain location data **from another foreground app**"
+
+**F. Last known location / Google Play services（5 p25–38）** 📖 "Current location = **last known location**"；用 `FusedLocationProviderClient`（`LocationServices.getFusedLocationProviderClient(this)`）；"Connect to service in **onStart()**"；`lastLocation` "In some rare situations this can be **null**"。
+
+✍️ Slide 5.2 Question（p39）：
+1. Mapping app → **Fine**；Weather app → **Coarse**
+2. 为什么在 `onStart()/onResume()` 开始？→ 因为 activity 此时 **visible / in the foreground**，用户需要 location
+3. 在哪里关？→ `onPause()` / `onStop()`，调用 `removeLocationUpdates()`，节省 battery
+
+**G. Permissions（5）** 📖
+- **Coarse** — "approximate location … **city block**"
+- **Fine** — "**precise** location"
+- **Background** — Android 10+
+- "Request location access **during run time**"（p42）
+- "Android 11 (API level 30) and higher, user enable background location **on a settings page**"（p43）
+
+**H. Location strategies（5 p40）** 📖 Challenges in determining user location: "**Multitude of location sources**, **User movement**, **Varying accuracy**"
+
+**I. Mock location（5 p44）** 📖 "Use mock location **for testing purposes**"；"injecting GPS location data"；"Using **DDMS** to set location to AVD"。
+
+✍️ Review Q4（p49）"best way to ensure accuracy is test on a real device — comment" → 同意一半：real device 能测真实 GPS / Wi-Fi 信号；但 **mock location** 能重复测不同地点、移动路线，两者一起用。
+
+---
+
+### 12.9 Chapter 6 — Instruments and Devices（进阶）
+
+**A. Decode a scaled image（6 p16）** 📖 "App may **run out of memory** after displaying too many images"；"Images should be **scaled to match the size of the destination view**"
+
+**B. Barcode scanning（6 p18）** 📖 "**Machine Learning (ML)** barcode scanning API"；"**On device, no need a network**"；"Support **2D format (QR Code)**"
+
+**C. Audio streams（6 p20–21）** 📖 Android maintains a separate audio stream for "playing music, alarms, notifications, the incoming call ringer, system sounds, in-call volume"；"Use the **STREAM_MUSIC** stream for background music or sound effects"
+
+**D. Audio playing classes（6 p22）** 📖
+- **MediaPlayer**: "plays sound and video"
+- **AudioManager**: "manages audio sources and audio output on a device"
+
+**E. MediaPlayer（6 p23–24, p27）** 📖
+- "Plays **local and external (streaming)** files"
+- "Supports any media codec that is provided by the Android platform and those that are device-specific"；"Recommendation: use **core media formats**"
+- Permission: `INTERNET`（"stream network-based content"）；`WAKE_LOCK`（"keep the **screen from dimming** or the **processor from sleeping**"）
+- "Always call **release()** to make sure any system resources allocated to it are properly released"
+
+**F. Core media formats（6 p25）** 📖 Audio: .3gp .mp3 .mp4 .mid .wav .ogg；Picture: .jpg .gif .png .bmp；Video: .3gp .mp4
+
+✍️ Slide 6.1 / 6.2 Questions（p19, p28）：
+- "You must obtain permission to enable the camera feature" → 不一定：用 **Intent 叫现有 camera app** 不需要 CAMERA permission；自己直接控制 camera 才需要（见 §3）
+- 防止没有 camera 的装置安装 → `<uses-feature android:name="android.hardware.camera" android:required="true" />`
+- 最快拍照方法 → 用 **Intent** 调用现有 camera app
+- "free to use any media codec" → 不对：device-specific codec 不是每台都有，slide 建议 "use **core media formats**"
+- `WAKE_LOCK` 的用途 → "keep the screen from dimming or the processor from sleeping"
+- 移除 MediaPlayer 资源的 method → **`release()`**
+
+---
+
+### 12.10 Chapter 7 — Packaging and Publication（进阶）
+
+**A. Launch checklist（7 p3–24）** 📖 依序：**Developer Program Policies → Developer Account → Localization → Device Compatibility → Quality Test (Alpha & Beta) → Store Listing**
+
+- Developer Program Policies（p4）: **Restricted Content, Intellectual Property, Privacy and Security, Monetization and Ads, Store Listing and Promotion**
+- Developer Account（p6）: "a **publishing account** issued by Platform Provider to developer"；"enables developer to **post, display, offer for sale, and distribute** apps through the Platform"；Google Play **USD 25 (one time)**，Apple **USD 99 (per year)**（p7）
+- Localization（p15）: "The adaptation of an app to meet the needs of a particular **language, culture** or desired population's **look-and-feel**"；"A successfully localized app is one that **appears to have been developed within the local culture**"
+- Device Compatibility（p20）: "ensures that an app **runs efficiently across mobile devices of different configurations**"；"different **hardware, software, and operating systems**"
+- Quality Test（p22）: "A process to ensure apps **meet specified regulations and standards**"；"techniques … to **prevent issues from occurring** and ensure they **satisfy the customer**"
+
+✍️ 题目问 "how to prepare MyGOV/ELSA for launch" → 按 checklist 顺序每点一句 slide 定义 + 一句 case（例如 ELSA 多国用户 → Localization）。
+
+**B. Preparing for Release（7）** 📖 "Release-ready .apk file is **signed with your own certificate**"
+Minimum requirements: "**Cryptographic keys, Application icon, End-user License Agreement, Promotional and marketing materials**"
+
+**C. Signing（7）** 📖 Steps: "**Create a key store, Create a private key, Build your project, Sign your app**"
+Signing considerations: **Modularity / Code-data sharing / Update**（同一把 key 签的 app 才能互相分享、才能 update）
+
+**D. Store listing size（7）** 📖 "App size **< 150 MB**"；"Distribution + Expansion up to **2 GB**"
+
+**E. Android Go（7）** 📖 "Target **Oreo (API 26)**"；"App size **less than 40 MB**"；"RAM usage below **50 MB (apps)**, **150 MB (games)**"；"Start your app **under 5 seconds**"
+
+**F. Google Play Instant（7）** 📖
+- "Native Android apps, **without the installation**"
+- "App runs **in response to launching a URL**"
+- "Upgrade to your existing Android app"
+- Android **5.0 (API 21)+**；"Supported by **App Bundles**"；entry: **Try Now / Instant Play**
+- Limitation: "app size **<= 15 MB**"；"only a **subset of APIs**"
+
+**G. Chrome OS（7）** 📖 "supports the **Google Play Store and Android apps**"；因为很多 Chromebook 没有触控屏，要在 manifest 写：
+`<uses-feature android:name="android.hardware.touchscreen" android:required="false" />`
+
+---
+
+### 12.11 §12 快速默写（10 条）
+
+1. Types of apps 表：Native / Hybrid / Mobile Web × **Cost, Performance, Distribution, Device features, Code maintenance**
+2. ABCS：**Activity = a screen**；Broadcast Receiver "messaging system … No UI"；Content Provider "central repository of data"；Service "No UI … long-running operations"
+3. Manifest："first file read by the Android"；"NOT declared … can NEVER run"
+4. Navigation Principles 5 条（Fixed start · stack · Up = Back · Up never exits · Deep linking）
+5. Accessibility 6 条（screen readers · navigation · **48 x 48 dp** · contrast · media · controls）
+6. Instance state = "key-value pairs stored in a **Bundle**"；ViewModel "survive configuration changes"
+7. Room = **Database / Entity / DAO**；"Don't use Room on the UI thread"
+8. Volley benefits：**scheduling, concurrent connections, prioritization, cancellation**；"Not suitable for large download or streaming"
+9. Location battery = **Accuracy, Latency, Frequency**；best practices：**Remove updates, Timeouts, Batch, Passive**
+10. Launch checklist：**Policies → Account → Localization → Compatibility → Quality Test → Store Listing**
 
 ---
 
