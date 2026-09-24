@@ -1,6 +1,6 @@
 # AMCS2104 — 考前总结（Lecture 关键字 + 中文意思）
 
-> **来源**：只根据 lecture slides（Chapter 1A–5C）和 Tutorial 1–12 的题目整理。英文关键字都是 **slide 原文**，考试照写。
+> **来源**：lecture slides（Chapter 1A–5C）+ **新的 tutorial 答案**（`tutorial ans.pdf`，Tutorial 1–12，164 页全部看过）。英文关键字都是 **slide 原文**，考试照写。
 > 每节有 3 样东西：
 > - **关键字**：slide 的英文，考试要写出来
 > - **意思**：用中文解释
@@ -41,7 +41,10 @@
 - "The search is **not systematic**"
 - **Strengths**："Have **very low memory consumption**"；"Often can find reasonable solutions in **large or infinite state spaces**"
 
-📝 Tutorial 7：UCSP 是不是 optimization problem？（是：要从所有可行的课表里找最好的，而且路径不重要）；用 classical 还是 local search？（local：只要最后的课表，而且 state space 很大）
+📝 Tutorial 7 Q1b（老师答案）：
+- UCSP 是 optimization problem？**True**：要找 "**best/optimal timetable** among many possible timetables"，要满足 constraints（classroom capacity、lecturer availability、student schedules），"**minimize conflicts**"
+- Classical 还是 local？**Local search**：UCSP 有 "**very large search space**"；local search 是 "improving a **current timetable** by making small changes"；classical search "require large amounts of time and memory"
+- 用 steepest ascent 还是 variant？**Random-restart hill climbing**：steepest-ascent 会 "**stuck at a local optimum**"；random-restart "start from **different random timetables**" → "increases the chance" 找到更好的
 
 ## 3.2 State Space Landscape ⭐
 
@@ -94,6 +97,9 @@ Objective function
 | **Local maxima** | "A peak that is higher than each of its neighboring states but **lower than the global maximum**"；"it will be stuck with nowhere else to go" | 爬到小山顶以为到了 |
 | **Ridges** | "A **sequence of local maxima** that is very difficult for greedy algorithms to navigate"；"all the available actions **point downhill**" | 斜斜的窄山脊 |
 | **Plateaus** | "A **flat area**"：flat local maximum 或 shoulder；"Search can get **lost wandering** on the plateau" | 一片平地，不知往哪走 |
+
+📝 **Tutorial 答案的写法不一样**（T7 Q1a(iii)："identify THREE points/areas in which hill climbing can get stuck"）：老师答 **Local maximum、Flat local maximum、Shoulder**（就是 landscape 图上的 3 个点）。
+→ 题目问 "**points / areas on the landscape**" → 写 local maximum、flat local maximum、shoulder；题目问 "**limitations / why stuck**" → 写 slide 的 local maxima、ridges、plateaus。
 
 **8-queens 数据**：8⁸ ≈ 17 million states；**Stuck 86%**（平均 3 steps）/ **Success 14%**（平均 4 steps）
 
@@ -198,7 +204,7 @@ Objective function
 | "**Random exploration**" | stochastic search / simulated annealing | **Mutation** |
 | "**Exchange of information** among parallel search threads" | local beam search | **Crossover** |
 
-📝 Tutorial 7 Q3：算 fitness（例 f(X) = (A+B) − (C+D) + (E+F) − (G+H)）、做 3 种 crossover、比较 offspring 和 parents 的 fitness、**没有 mutation 能不能找到 optimal？**（不一定：如果某个 digit 在整个 population 里都没出现过，crossover 永远产生不出来，只有 mutation 能带进新的值）
+📝 新 Tutorial 7 Q3 只问 "**Briefly explain the FIVE key concepts in EA**"（老师答：Initialisation/Population、Fitness Function、Selection、Crossover (Recombination)、Mutation，各一句）。旧 tutorial 还有算题：算 fitness（例 f(X) = (A+B) − (C+D) + (E+F) − (G+H)）、做 3 种 crossover、比较 offspring 和 parents 的 fitness、**没有 mutation 能不能找到 optimal？**（不一定：如果某个 digit 在整个 population 里都没出现过，crossover 永远产生不出来，只有 mutation 能带进新的值）
 
 ---
 
@@ -287,7 +293,7 @@ MAX 的 best move = 往 B，value **3**
 | **General principle** | 如果玩家在同一层（m）或更上层（m'）已经有 **better choice**，"Player will **never move to n**" → n 可以剪 |
 | **α** | "the best **highest-value** choice found so far along the path for **MAX**"（MAX 的下限，初始 −∞） |
 | **β** | "the best **lowest-value** choice found so far along the path for **MIN**"（MIN 的上限，初始 +∞） |
-| 条件 | node 只有在 "**α ≤ N ≤ β**" 才有用；"when **α > β** … its remaining successors will be **pruned**" |
+| 条件 | node 只有在 "**α ≤ N ≤ β**" 才有用；slide 写 "when **α > β** … pruned"，**Tutorial 9 老师答案写 "When α ≥ β, we can stop exploring that branch"**（考试写 α ≥ β） |
 
 **做题规则**：
 - **MIN node** 拿到 child 值 v：若 **v ≤ α** → 剪掉剩下的；否则 β = min(β, v)
@@ -439,12 +445,14 @@ CSP 的好处："**eliminate large portions of the search space all at once** by
 - 行、列、box 都叫 **unit**
 - （同样道理：4×4 → 16 variables、12 Alldiff；6×6 → 36 variables、18 Alldiff）
 
-**④ Queen Problem（📝 Tutorial 10 Q3：4-Queens）**
-- Variables：Q₁…Q₄（Qᵢ = 第 i 列的 queen 在哪一行）
-- Domains：{1, 2, 3, 4}
-- Constraints：每对 i < j：**Qᵢ ≠ Qⱼ**（不同行）且 **|Qᵢ − Qⱼ| ≠ j − i**（不同对角线）
+**④ Queen Problem（📝 Tutorial 10 Q3：4-Queens，老师答案）**
+- Variables：{C1, C2, C3, C4}，"C1 = **column position of the queen in row 1**"（每一 row 一个 queen）
+- Domains：{1, 2, 3, 4}（column 号码）
+- Constraints：〈(Ci, Cj), [**Ci ≠ Cj**, **|Ci − Cj| ≠ |i − j|**]〉，i ≠ j（不同 column、不同对角线）
 
-**⑤ Job Shop Scheduling**
+**⑤ 4×4 Sudoku（Tutorial 10 [EXTRA]）**：16 variables A1…D4、domain {1, 2, 3, 4}、**12 Alldiff**（4 rows + 4 columns + 4 个 2×2 boxes）；题目算 C3 = **2**、B2 = **1**（先推 D4 = 3、B3 = 3，再用）
+
+**⑥ Job Shop Scheduling**
 - Variables：每个 task 的**开始时间**（AxleF、WheelRF、NutsRF、CapRF、Inspect…）
 - **Precedence constraint**：T₁ + d₁ ≤ T₂（例 AxleF + 10 ≤ WheelRF）
 - **Disjunctive constraint**：(AxleF + 10 ≤ AxleB) **or** (AxleB + 10 ≤ AxleF)
@@ -638,11 +646,13 @@ Slide 例子：**E6** → box 删 {1, 2, 7, 8}、column 删 {2, 3, 5, 6, 8, 9} �
 - "Rules that guide and underlie everyone's thinking"；"Attempts to codify the **'right thinking'**, or **irrefutable reasoning** processes"；"Initiated the field called **logic**"
 - **Syllogism**："deductive reasoning consisting of **two premises, and a conclusion**"
 - 例：Sam is Michelle's parent. Sam is a woman. → Sam is Michelle's mother.
-- 📝 Challenge：现实的知识很难用严格的逻辑写出来
+- 📝 **2 个 challenges**（Tutorial 1 老师答案）：
+  1. 需要 "knowledge of the world that is **certain and represented in formal terms**, which can be hardly achieved"（例：要不要带伞？天气只有 60% 下雨机会，不是 0% uncertainty）
+  2. "big difference between solving a problem **in principle** and solving it **in practice**"，**computational resources** 是问题（例：KL 到 Penang 所有路线都算一次 → combinatorial explosion）
 
 **Rational Agent**："A **rational agent** acts so as to achieve the **best outcome** or, when there is uncertainty, the **best expected outcome**"
 
-**为什么用 Rational Agent approach？**
+**为什么用 Rational Agent approach？**（Tutorial 1 老师答案的两个标题：**More general and flexible approach**、**Scientifically well-defined and measurable**）
 - vs Thinking Rationally："correct inference is **just one of several possible mechanisms** for achieving rationality"（有时没有能证明对的事可做，但还是要行动；reflex action 不用推理）
 - vs Humanly："challenging to **model them mathematically**"；rationality "can be **well defined mathematically**, making it (provably) **achievable**"
 
@@ -684,7 +694,7 @@ Agent 例子：Human（eyes, ears / hands, legs）；Robotic（cameras, infrared
 | 情况 | "Acts under **uncertainty**" | "Acts under **certainty**" |
 | 目标 | "**best expected outcome**" | "**best actual outcome**" |
 
-**3 capabilities**：
+**3 capabilities**（Tutorial 1 老师答案对应成：**Information gathering = Perceive**、**Learning = Think / Reason**、**Autonomous = Act**）：
 - **Information gathering**："Perceive the environment **before making any action**"
 - **Learning**："compensate for agents' **incomplete or incorrect prior knowledge**"
 - **Autonomy**：只靠设计者的 prior knowledge → "**fragile and lack autonomy**"；rational agent 应能 "act based on its **own experience**"
@@ -747,6 +757,20 @@ Agent 例子：Human（eyes, ears / hands, legs）；Robotic（cameras, infrared
 
 **4 种 agent**（一个比一个聪明）
 
+📝 Tutorial 2 Q2："With the use of the **schematic diagrams**, explain how the agent makes decision" → 要**画方框图**。方框里的字（slide 原图）：
+
+```
+Simple reflex:   Sensors → [What the world is like now] → [What action I should do now] → Actuators
+                                         ↑ (Condition-action rules)
+
+Model-based:     加上 (State)、(How the world evolves)、(What my actions do) 指向 [What the world is like now]
+
+Goal-based:      再加 [What it will be like if I do action A]，(Goals) 指向 [What action I should do now]
+
+Utility-based:   (Goals) 换成 (Utility) → [How happy I will be in such a state] → [What action I should do now]
+```
+老师答案的记法：Simple reflex = **reacts**；Model-based = **reacts + remembers**；Goal-based = **reacts + remembers + plans**；Utility-based = **+ best outcome（trade-offs）**
+
 | 关键字 | 怎么做决定（slide） | 缺点 |
 |---|---|---|
 | **Simple reflex agent** | "selects actions on the basis of the **current percept**, ignoring the rest of the percept history"；用 **condition–action rule**（if–then） | "Only works well if the environment is **fully observable**"；会 **infinite loop**（randomized 版比较好） |
@@ -766,7 +790,10 @@ Agent 例子：Human（eyes, ears / hands, legs）；Robotic（cameras, infrared
 | **Critic** | "**evaluating** the agent's behavior with respect to a **fixed performance standard**" | 评估有没有保持车道、有没有撞 |
 | **Problem generator** | "suggesting actions that will lead to **new experiences**" | 建议试新路线 |
 
-📝 Learning vs non-learning agent（3 点）：会不会从经验学、能不能适应变化、performance 会不会进步
+📝 **Learning vs non-learning agent**（Tutorial 3 老师答案，每点对应一个 component）：
+1. 知道自己做得好不好（**via critic**）vs 不知道，只跟 predefined rules
+2. 能修改行为、以后做更好（**via the learning element**）vs 不能修改
+3. 会探索 sub-optimal 的做法，可能找到更好的（**via problem generator**）vs 不探索新做法
 
 **Representation**（越来越复杂）
 
@@ -785,7 +812,7 @@ Agent 例子：Human（eyes, ears / hands, legs）；Robotic（cameras, infrared
 - "A type of **goal-based agent**"；"Find a **sequence of actions** that achieves its goals"；用 **atomic representation**
 
 **4 phases**：**Goal Formulation → Problem Formulation → Solution Searching → Solution Execution**
-⚠️ Tutorial 有同学把第 3 个写成 "Solution Formulation"，slide 是 **Solution Searching**
+（老师 tutorial 答案写成 **Goal Formulation → Problem Formulation → Search → Execute**，并加问题：What do I want? / How do I describe the problem? / What is the best solution? / Carry out the solution.）
 
 | Phase | 意思 |
 |---|---|
@@ -920,23 +947,37 @@ Agent 例子：Human（eyes, ears / hands, legs）；Robotic（cameras, infrared
 
 **Romania A\* 答案**：Arad → Sibiu → Rimnicu Vilcea → Pitesti → Bucharest = **418**（Greedy 走 Fagaras 得 **450**，不是 optimal）
 
-📝 **画 search tree 的格式**（Tutorial 5、6）：
-- 先写假设：**graph / tree search**、**early / late goal test**、**alphabetical order**
-- A* 每个 node 写 **g + h = f**，标 expansion 顺序 [1][2][3]…
-- 写出每一步的 **frontier** 和 **reached / explored**
+📝 **Search 题的标准答法**（Tutorial 4–6 老师答案）：
+1. 画 **search tree**（被跳过的 node 打 ✗）；A* 每个 node 写 f 值（例 F9 = 3 + 6）
+2. 画 **Expanded Node | Frontier** 表格，一步一行
+3. 写 **Solution Path**、**Total Path Cost**（例：6 + 1 + 5 + 5 = 17）
+4. **Performance evaluation**（4 项）：
+   - **Completeness**：Complete / Incomplete
+   - **Optimality**：Cost-optimal / Not cost-optimal
+   - **Time efficiency** = "**number of nodes expanded** until a goal node is discovered"
+   - **Space efficiency** = "**maximum size of frontier** required"（1 node = 1 byte）
 
 
 ---
 
-# Tutorial 图题的答案（我用程序验算过）
+# Tutorial 答案重点（老师答案 + 我用程序验算）
 
-> Tutorial 7–13 的答案格在 handbook 里是**空的**，下面是我照 lecture 的方法算出来的答案。Tutorial 1–6 有同学的答案，我对照过，错的地方有标出。
+> 下面的答案都跟新的 tutorial 老师答案对照过；老师答案有错的地方我用 ⚠️ 标出来。
 
 ## T7 Q2a：4-Queens（图：queen 在第 1、2、3、2 行）
 
 - States = **4⁴ = 256**；successors = **4 × 3 = 12**
 - Initial state (1, 2, 3, 2) 的 h = **5**（c1–c2 对角、c1–c3 对角、c2–c3 对角、c2–c4 同一行、c3–c4 对角）
 - Steepest ascent：h **5 → 2 → 1 → 0**，solution = **(3, 1, 4, 2)**，3 步到 global minimum，没有遇到 local minimum 或 plateau
+- 老师答案的 h 值格（每格 = 把那一 column 的 queen 移到这格后的 h）：
+
+```
+Q 3 5 4
+5 Q 4 Q
+5 3 Q 4
+3 4 2 6
+```
+- 老师算 h 的快速方法：分别数 **row、column、main diagonal（row − col 一样）、anti-diagonal（row + col 一样）**，每一组有 k 个 queen 就算 **k(k−1)/2** 对，全部加起来
 
 ## T7 Q2b：8-puzzle（Manhattan distance）
 
@@ -956,16 +997,26 @@ Initial        Goal
 边：A–B 6、A–F 3、B–C 1、B–D 2、C–D 1、C–E 5、D–E 1、E–I 5、E–J 5、F–G 2、F–H 7、G–I 3、H–I 3、I–J 1
 h：A 10、B 8、C 5、D 7、E 3、F 6、G 5、H 3、I 1、J 0
 
-| Strategy（题目的设定） | Expansion 顺序 | Solution | Cost | Optimal? |
-|---|---|---|---|---|
-| **BFS**（graph、early goal test、alphabetical） | A, B, F, C, D, G, H, E（生成 J 就停） | A-B-C-E-J | **17** | ✗ |
-| **DFS**（tree、检查 loop、alphabetical） | A, B, C, D, E, I, G, F, H, H, F, G, J | A-B-C-D-E-I-J | **15** | ✗ |
-| **UCS**（graph、late goal test） | A0, F3, G5, B6, C7, D8, I8, J9 | A-F-G-I-J | **9** | ✓ |
-| **Greedy**（tree、late goal test、检查 loop） | A10, F6, H3, I1, J0 | A-F-H-I-J | **14** | ✗ |
-| **A\***（graph、late goal test） | A 0+10, F 3+6, G 5+5, I 8+1, J 9+0 | A-F-G-I-J | **9** | ✓ |
+| Strategy（题目的设定） | Expansion 顺序 | Solution | Cost | Complete | Optimal | Time（nodes expanded） | Space（max frontier） |
+|---|---|---|---|---|---|---|---|
+| **BFS**（T4：graph、early goal test） | A, B, F, C, D, G, H, E（生成 J 就停） | A-B-C-E-J | **17** | ✓ | ✗ | **8** | **4 bytes** |
+| **DFS**（T5：tree-like、late、检查 loop） | A, B, C, D, E, I, G, F, H, H, F, G, J | A-B-C-D-E-I-J | **15** | ✓ | ✗ | **13** | **10 bytes** |
+| **UCS**（T5：graph、late、同分按字母） | A0, F3, G5, B6, C7, D8, I8, E9, J9 | A-F-G-I-J | **9** | ✓ | ✓ | **9** | **4 bytes** |
+| **IDS**（T5：tree-like、late、检查 loop） | limit 0 → 1 → 2 → 3 → 4 才找到 | A-B-C-E-J | **17** | ✓ | ✗ | **37** | **6 bytes** |
+| **Greedy**（T6：tree-like、late、检查 loop） | A10, F6, H3, I1, J0 | A-F-H-I-J | **14** | ✓ | ✗ | **5** | **6 bytes** |
+| **A\***（T6：graph、late） | A 0+10, F 3+6, G 5+5, I 8+1, J 9+0 | A-F-G-I-J | **9** | ✓ | ✓ | **5** | **4 bytes** |
 
-- A\* 和 UCS 答案一样（optimal），但 A\* 只 expand **5** 个 node，UCS 要 **8** 个 → heuristic 的价值
-- UCS 里 D 和 I 都是 8，同分时按 alphabetical 先 D
+- T5 选哪个？老师答 **UCS**："complete, produces the lowest-cost (optimal) solution, and generally uses less time and memory"
+- T6 六种里选哪个？老师答 **A\***："both UCS and A\* are complete and cost-optimal, A\* has **higher time efficiency**"（5 vs 9 nodes）
+- UCS 同分时按字母：D8 在 I8 前、E9 在 J9 前
+
+📝 **两两比较**（T5、T6 老师答案，每题写 2 点）：
+- **BFS vs DFS**：shallowest vs deepest node first；**FIFO** vs **LIFO**；通常 **graph search** vs **tree-like search**
+- **BFS vs UCS**：expand shallowest vs lowest **g(n)**；FIFO vs **priority queue**；BFS 只有 step costs 一样才 optimal，UCS 都 optimal
+- **Greedy vs A\***：只用 **h(n)** vs **f(n) = g(n) + h(n)**；Greedy 较快但可能不 optimal；通常 tree-like vs graph
+- **Greedy vs UCS**：靠 heuristic vs 完全不用 heuristic；选 "appears closest to the goal" vs "lowest cost accumulated so far"
+- **Admissible 例子**：真实距离 10 km，估 8 km ✓、10 km ✓、15 km ✗（overestimate）
+- **Consistent 例子**：A(h=10) –5– B(h=5) –5– G：10 ≤ 5 + 5 ✓
 
 ## T8 / T9：Game tree
 
@@ -977,7 +1028,7 @@ MIN      H=6  I=3   J=16 K=3 L=4    M=3  N=2     O=1  P=8
 leaf     6 8 3 11 9 17 16 7 3 9 4   5 3  2 4    10 1  8 11
 ```
 - 层次：A **MAX**、B/C **MIN**、D–G **MAX**、H–P **MIN**、leaves = terminal
-- Minimax：A = **6**，MAX 的 best move = **往 B**
+- Minimax：A = **6**，MAX 的 best move = **往 B**；老师答案写整条路径 **A, B, D, H, Q**
 
 **Alpha-beta，左到右**：剪掉
 - I 的 **T(11)、U(9)**：I 看到 3 ≤ α = 6（D 已有 6）
@@ -985,14 +1036,20 @@ leaf     6 8 3 11 9 17 16 7 3 9 4   5 3  2 4    10 1  8 11
 - M 的 **AC(3)**：M 看到 5 ≤ α = 6（A 已有 6）
 - N 的 **AE(4)**：N 看到 2 ≤ α = 6
 - C 的 **G 整棵**：C ≤ 5 ≤ α = 6
+- 老师答案："the second and third successors of node I / E, the second successor of node M / N / C" → **In total 17 nodes are pruned**
 
 **Alpha-beta，右到左**：只剪掉
 - O 的 **AF(10)**：O 先看到 1 ≤ α = 8（G 已有 P = 8）
 - K 的 **X(7)**：K 先看到 3 ≤ α = 4（E 已有 L = 4）
+- 老师答案："the second successor of node K / O" → **In total 2 nodes are pruned**
+- 老师在图上每个 node 旁边写 **(α, β)**，例 A (6, ∞)、C (6, 3)，考试照这样标
 
 **结论**：两个方向 root 都是 **6**（结果一样），但左到右剪了很多，右到左只剪 2 个 → "effectiveness … **highly dependent on the order**"
 
 ## T11 Q2：Sudoku（AIMA 那一题）
+
+老师答案的顺序是 **box → column → row**，每一步写 "we can remove … As a result, the domain is reduced to …"：
+
 
 | Variable | Row 删 | Column 删 | Box 删 | 结果 |
 |---|---|---|---|---|
@@ -1019,6 +1076,22 @@ leaf     6 8 3 11 9 17 16 7 3 9 4   5 3  2 4    10 1  8 11
 - SA 没有合法值（Red、Blue、Green 都被邻居用了）
 - **Chronological backtracking** 回到最近的 **T** → 没用，T 跟 SA **不相邻**，改 T 也救不了 SA
 - **Backjumping** 回到 SA 的 conflict set 里最近的 **NSW** → 改 NSW 才可能让 SA 有颜色
+- 老师答案的结论："backjumping skips T and backtracks directly to NSW" → **more effective**
+
+⚠️ 老师答案有两处要小心：
+- (v) 说 NSW 还有 "Red and Blue" 可以选，然后试 NSW = Red。其实 NSW 的邻居有 **Q = Red、V = Blue**，所以 NSW 只剩 Green（原本的值），**没有别的合法值**。考试照老师的思路写 "backjump to NSW" 就好，不用写 NSW = Red。
+- (i) 写 "backtrack to NSW"，但 (ii) 又说 chronological 会先回 **T**。照 slide 的定义，**chronological 回到 T**，backjumping 才回 NSW。
+
+## T12 Q1b：Timetable backtracking（老师答案）
+
+- **Plain backtracking**（C1→C5，值从左到右）：C1=A、C2=B、C3=A、C4=A ✗（C3≠C4）→ C4=B、C5=B ✗（C4≠C5）→ C4=C、C5=B ✓ → **C1=A, C2=B, C3=A, C4=C, C5=B**
+- **MRV**：顺序 **C5, C1, C2, C3, C4**（C5 只有 1 个值先做）→ 老师结论：**improved**（fewer steps）
+  - ⚠️ 老师表格最后写 C4 = B，但 C5 = B、C4 ≠ C5，所以应该是 **C4 = C**
+- **Degree**：顺序 **C3, C2, C4, C5, C1**（C3 有 3 个 constraints 最多）→ 一样要 backtrack → 老师结论：**performance remains the same**
+- **LCV**：选值时看会不会让邻居变少（例：C4 不选 B，因为 C5 只剩 B）→ 老师结论：**improved**
+
+📝 **4 个影响 backtracking 表现的方法**（T12 Q1a(iv) 老师答案）：variable 的顺序、value 的顺序、inference 时 constraints 的顺序、能不能 backtrack 到真正造成问题的 variable（+ 记住 bad assignments）
+📝 **Forward checking 例子**（老师用）：A–B–C 一条线，A=Red → B 删 Red；**MAC** 再往下传 → C 也被删
 
 ## T10 Q2 / T11 Q1：Timetable
 
@@ -1028,11 +1101,12 @@ leaf     6 8 3 11 9 17 16 7 3 9 4   5 3  2 4    10 1  8 11
 - **T10 Table 3**：C1 {C}、C2 {B, C}、C3 {A, B}、C4 {B, C}、C5 {A, B} → AC-3 直接解完：**C1 = C、C2 = B、C3 = A、C4 = C、C5 = B**
 - **T11 Q1**：3 门课**两两重叠**，只有 Alex、Billy 两人 → AC-3 做完每个 domain 还是 {A, B}（**arc-consistent**），但**没有 solution** → 结论：arc consistency 不一定能发现无解 → 用 **Alldiff(C1, C2, C3)**：3 个 variables > 2 个值 → 马上发现 inconsistent
 
-## ⚠️ Tutorial 1–6 同学答案里要注意的地方
+## ⚠️ 其他注意
 
-- T3 Q2：4 phases 第 3 个写 "Solution Formulation" → slide 是 **Solution Searching**
-- T1 Q2a(v)：rational agent 的 3 capabilities 同学写了 expected utility / planning / learning → slide 是 **Information gathering、Learning、Autonomy**
-- T2 Q1 表格叫 "12 types"，slide 是 **6 对 properties**（再加 Known vs Unknown）
+- 4 phases：slide 写 **Solution Searching / Solution Execution**，老师 tutorial 答案写 **Search / Execute**，两种都可以
+- T1 Q2b(iii) vacuum 例子：4 格世界但只能左右走 → 老师答 **NO**（"only capable of cleaning two squares out of four"）
+- T4 Q2 Big-O：老师答案也照 slide 把 O(n log n) 叫 "Logarithmic time"；preferred 写 **O(1)、O(n)**
+- T10 Table 3 和旧 T7 EA 算题是**旧 tutorial** 的，新 tutorial 没有
 
 ---
 
