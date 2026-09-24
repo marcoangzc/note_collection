@@ -329,3 +329,250 @@ Activity shut down
 11. GPS：准、慢、耗电、Outdoor；Geocoding = 地址打错也找得到
 12. **Service model**："Free, an extension of physical/online services"；**Dynamic Delivery**
 13. Languages → `values-ms/` + device locale；Toast / Snackbar / Notification / Dialog
+
+---
+
+## 12. 没考过的知识点（关键字 + 意思）
+
+> Past year 没出过，**先确定 §1–§11 熟了再看**。⭐ = 比较可能考。
+> 考到时一样用"名字 + 关键字 + 套进 case"来写。slide 原句的完整版在冲刺笔记的 §12。
+
+### 12.1 Chapter 1 — Introduction
+
+**⭐ 3 种 app**
+
+| | Native | Hybrid | Mobile Web |
+|---|---|---|---|
+| Cost | High | Low | Low |
+| Performance | Fast | Depends on network | Depends on network |
+| Distribution | App stores | App stores | None |
+| Device features | Wide | Limited | Very limited |
+| Code maintenance | Multiple codebase | Single codebase | Single codebase |
+
+意思：**Native** = 专门为 Android / iOS 各写一个，快、能用所有功能，但贵；**Hybrid** = 写一次包成 app；**Mobile Web** = 其实是网页。要用 camera / GPS → 选 **Native**。
+
+**⭐ 4 大 component（口诀 ABCS）**
+
+| 关键字 | 意思 |
+|---|---|
+| **Activity** | "An activity = **a screen**"，一个画面 |
+| **Broadcast Receiver** | "A **messaging system**"，No UI；接收系统广播（例如电量低） |
+| **Content Provider** | "Manages access to a **central repository of data**"；让别的 app 读你的资料（例如通讯录） |
+| **Service** | "No UI. Runs in the **background**. **Long-running operations**"（例如播音乐） |
+
+**安全相关**
+
+| 关键字 | 意思 |
+|---|---|
+| **Security sandbox** | 每个 app 住在自己的"隔离房间"：unique **Linux ID**、own **Linux process**、own **VM** |
+| **Principle of Least Privilege** | app 只拿"做事需要的"权限，**no more** |
+| **Permission** | 版本 5 以下：**install time** 给；版本 6 以上：**runtime** 才问 |
+| **APK** | app 安装包 = **Compiled Code, Data, Resources** |
+
+**⭐ Manifest**：
+- "The **first file read by the Android** before it starts an app component"
+- "Components NOT declared … can **NEVER run**"
+- 里面有：**Permission, Minimum API level, Hardware and software features, App components, Linked libraries**
+
+### 12.2 Chapter 2.1 — UI Components
+
+| 关键字 | 意思 |
+|---|---|
+| **Row / Column / Box** | 横排 / 直排 / 叠在一起 |
+| **Modifier** | 改大小、颜色、边距 |
+| **Constraint Layout** | "**flat view hierarchy**"，用相对位置排 |
+| **Lazy List / Lazy Grid** | 动态列表 / 格子，只画看得到的 |
+| **RecyclerView** | 旧的列表，"item's views are **recycled**"（重复用） |
+| **View** | "Also called **widget**"，一个 UI 零件 |
+
+**⭐ 选择用的 UI components**
+
+| 关键字 | 意思 | 例子 |
+|---|---|---|
+| **Check Box** | 选 **one or more** | 选多个兴趣 |
+| **Radio Button** | 只选 **one**，"**mutually exclusive**"（互相排斥） | 性别、等级 |
+| **Spinner** | 下拉菜单，"select **one value from a set**" | 选州属 |
+| **Text Field** | 输入字；用 `keyboardType` 决定键盘（number、email、password） | IC 号码 → number |
+
+**Dark Theme**（Android 10）："**Reduces power usage**、**Improves visibility**、**Easier to use in a low-light environment**"
+
+### 12.3 Chapter 2.2 — Navigation
+
+**⭐ Navigation Principles 5 条**
+
+| 关键字 | 意思 |
+|---|---|
+| **Fixed start destination** | app 永远从同一个画面开始 |
+| **Navigation state is a stack of destinations** | 画面像叠盘子，后开的在上面 |
+| **Up and Back are identical within your app** | app 里的"上一页"和手机返回键效果一样 |
+| **The Up button never exits your app** | Up 按钮不会把你踢出 app |
+| **Deep linking simulates manual navigation** | 从链接直接进深层画面，按返回也像一步步走进来的 |
+
+| 关键字 | 意思 |
+|---|---|
+| **Navigation Graph** | "**XML resource**"，记录所有画面和路线的地图 |
+| **NavHost** | "An **empty container**"，显示目前画面的框 |
+| **NavController** | "**manages app navigation**"，负责换画面 |
+| **Fragment** | 画面里的一块，用来做 **multi-pane**（平板横放显示两栏） |
+
+**⭐ Navigation Drawer vs Tabs**
+
+| | Navigation Drawer（侧边拉出的菜单） | Tabs（上方的分页标签） |
+|---|---|---|
+| 用在 | **≥ 5 top-level destinations**、**≥ 2 levels**、**unrelated destinations** | 内容 **related**、**same level of hierarchy** |
+| 例子 | MyGOV 很多不相关的服务 | 同一服务里的"申请 / 状态 / 历史" |
+
+**Dialog 种类**：Alert / Simple / Confirmation / Full screen；"**Use it sparingly because they are interruptive**"（少用，会打断用户）；AlertDialog = Title + Content area + Action buttons（**不超过 3 个**）
+
+### 12.4 Chapter 2.3 — Menus · Accessibility
+
+| 关键字 | 意思 |
+|---|---|
+| **Menus** | "Presents **actions and options**"，放在 **Toolbar** |
+| **FIT scheme** | 哪些 action 放 app bar：**Frequent, Important, Typical** |
+| **Up button** | 回到上一层；child activity 要在 **manifest 声明 parent** |
+
+**⭐ Accessibility**："**Regardless of ability**, users are able to **navigate, understand, and use** an app"（残障人士也能用）
+
+6 个做法：
+
+| 关键字 | 意思 |
+|---|---|
+| **Support screen readers** | 给视障用户的读屏软件：每个按钮要有标签 |
+| **Easy-to-follow navigation** | 简单的路线，不要会自动消失的 UI |
+| **Large touch targets** | 按钮至少 **48 x 48 dp**，间距 **8dp** |
+| **Adequate colour contrast** | 颜色对比够强；不要只靠颜色表达意思（色盲） |
+| **Media content accessible** | 影片有 **caption / transcript**，有暂停按钮 |
+| **Interactive controls clear** | 按钮一看就知道能按 |
+
+⚠️ slide 写 "48 x 48 pixel"，考试写 **dp** 较安全。
+
+**Gesture navigation**（Android 10）：app 要 **edge to edge**，处理手势冲突
+**Display cutouts**（Android 9，屏幕的"刘海"）：Default / Short Edges / Never
+
+### 12.5 Chapter 3 — Activity 细节
+
+| 关键字 | 意思 |
+|---|---|
+| **Back stack** | 画面像叠盘子，"**last in, first out**" |
+| **finish()** | 关掉目前的画面 |
+| **Activity Result API** | 开另一个画面并**拿结果回来**（旧的 `startActivityForResult` 已 **deprecated**） |
+| **⭐ Configuration change** | 例如**转屏**，"Current activity will be **destroyed**" 再重建，资料会不见 |
+| **⭐ Instance state** | 转屏前保存的资料，"**key-value pairs** stored in a **Bundle**"；用 `onSaveInstanceState()` 存 |
+
+转屏资料不见怎么办 → 存进 **Bundle**，或用 **ViewModel**（"survive configuration changes"）
+
+### 12.6 Chapter 4.1 — Data Storage 进阶
+
+| 关键字 | 意思 |
+|---|---|
+| `getSharedPreferences()` | **多个**设定文件 |
+| `getPreferences()` | 只给这个 Activity 的**一个**文件 |
+| **DataStore** | Shared Preferences 的新版 |
+| External **Public** vs **Private** | Public：所有 app 可用，卸载后**还在**；Private：只有你的 app，卸载后**删掉** |
+| SQLite data types | **NULL, INTEGER, REAL, TEXT, BLOB**（BLOB = 图片之类的二进制资料） |
+
+**⭐ Room 3 部分**（比喻：图书馆）
+
+| 关键字 | 意思 | 比喻 |
+|---|---|---|
+| **Database** | "access point to DB" | 图书馆大门 |
+| **Entity** | "table" | 书架 |
+| **DAO** | "methods to access DB" | 借书还书的柜台 |
+
+"**Don't use Room on the UI thread**"（会卡画面）
+
+**⭐ Architecture Components**
+
+| 关键字 | 意思 |
+|---|---|
+| **ViewModel** | 给画面准备资料；"**survive configuration changes**"（转屏不会不见） |
+| **Repository** | 统一管理**多个资料来源**（手机 + server） |
+| **LiveData** | "**observable**"（资料一变，画面自动更新）+ "**lifecycle-aware**" |
+| **Coroutine** | 做长时间的工作但**不卡 main thread**（"main-safety"）；`launch` 不回传结果，`async` 回传结果 |
+
+**SQL vs NoSQL**：SQL = 表格；NoSQL（例如 **Firebase**）= Document、Key-Value、Graph、Wide-Column
+
+### 12.7 Chapter 4.2 — Network 进阶
+
+| 关键字 | 意思 |
+|---|---|
+| **REST** | 用 **GET, POST, PUT, DELETE**；支持 HTML、XML、**JSON** |
+| **SOAP** | 只用 **XML**；可走 HTTP、SMTP、TCP、UDP |
+| **JSON vs XML** | "**JSON is faster and easier than XML**" |
+| **AsyncTask** | 背景做事、结果回 UI；onPreExecute → doInBackground → onPostExecute；⚠️ 已 **deprecated**，现在用 **coroutines** |
+| **⭐ Volley** | "**HTTP library**"；优点：Automatic scheduling、Multiple concurrent connections、Request prioritization、Cancellation；"**Not suitable for large download or streaming**" |
+| **Network best practices** | "**Minimize** sensitive data"、"Send all traffic over **SSL**"（加密） |
+| **MQTT** | "**machine-to-machine**"（IoT 用）、"**publish/subscribe**" |
+| **Cloud** | "**on-demand** computing resources over the internet on a **pay-for-use** basis" |
+
+### 12.8 Chapter 5 — Location 进阶
+
+**⭐ 影响电量的 3 个因素：Accuracy · Frequency · Latency**
+
+| 关键字 | 意思 |
+|---|---|
+| **Accuracy** | 位置有多准；"**the higher the accuracy, the higher the battery drain**" |
+| **Frequency** | 多久更新一次（`setInterval()`） |
+| **Latency** | 位置多久**送到** app（`setMaxWaitTime()`，可以攒起来一次送） |
+
+| Priority | 准确度 | 用什么 |
+|---|---|---|
+| High Accuracy | 最准 | GPS |
+| Balanced Power | 100 m（city block） | Wi-Fi / cell |
+| Low Power | 10 km（city-level） | Wi-Fi / cell |
+| No Power | 用别的 app 拿到的位置 | 无 |
+
+例：地图 → High Accuracy；天气 → Low Power
+
+**⭐ Location best practices 4 条**
+
+| 关键字 | 意思 |
+|---|---|
+| **Remove location updates** | `onPause/onStop` 时关掉，省电 |
+| **Set timeouts** | 设定多久后自动停止 |
+| **Batch requests** | 攒起来一次处理（背景用） |
+| **Passive location updates** | 用别的 app 拿到的位置 |
+
+**Permissions**
+
+| 关键字 | 意思 | 例子 |
+|---|---|---|
+| **Coarse** | 大概位置（city block） | 天气 app |
+| **Fine** | 精准位置 | 地图 app |
+| **Background** | 关着也要位置（Android 10+） | 家人定位 |
+
+**Mock location** = 测试用的假位置；**Last known location** = 最后一次知道的位置（最快、最省电）
+
+### 12.9 Chapter 6 — Media 进阶
+
+| 关键字 | 意思 |
+|---|---|
+| **Decode a scaled image** | 图片要**缩小到画面大小**再显示，不然 app 会 **run out of memory** |
+| **Barcode scanning** | ML API，"**On device, no need a network**"，支持 **QR Code** |
+| **STREAM_MUSIC** | 播背景音乐、音效用的声音频道 |
+| **MediaPlayer** | 播放声音和影片（本地或串流） |
+| **AudioManager** | 管理声音来源和输出 |
+| **WAKE_LOCK** permission | 播放时 "keep the **screen from dimming** or the **processor from sleeping**" |
+| **release()** | 用完 MediaPlayer 一定要 release，释放资源 |
+| **Core media formats** | 用常见格式（mp3、mp4、jpg、png），不要用某些手机才有的 codec |
+
+### 12.10 Chapter 7 — Publishing 进阶
+
+**⭐ Launch checklist**（按顺序）
+
+| 关键字 | 意思 |
+|---|---|
+| **Developer Program Policies** | Google 的规则：Restricted Content、Intellectual Property、Privacy and Security 等 |
+| **Developer Account** | 发布帐号；Google **USD 25 一次**，Apple **USD 99 每年** |
+| **⭐ Localization** | 按**语言、文化**调整 app，"appears to have been developed **within the local culture**" |
+| **Device Compatibility** | 在不同硬件、软件、OS 上都能顺跑 |
+| **Quality Test (Alpha & Beta)** | 发布前测试，"prevent issues from occurring" |
+| **Store Listing** | 商店页面；app **< 150 MB** |
+
+| 关键字 | 意思 |
+|---|---|
+| **Signing** | 发布的 APK 要用**自己的 certificate 签名**：Create key store → private key → Build → Sign |
+| **Android Go** | 给便宜手机：app **< 40 MB**、RAM **< 50 MB**、**5 秒内**开启 |
+| **Google Play Instant** | "**without the installation**"，点链接就能试用；app **≤ 15 MB** |
+| **Chrome OS** | Chromebook 也能跑 Android app；manifest 写 touchscreen `required="false"` |
