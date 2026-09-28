@@ -5,6 +5,8 @@
 
 ---
 
+> ⏱ **8 小时零基础版**：只有讲师 Revision Notes 的 5 章（Ch1、2、6、7、8），双语关键词 + 讲师原句 + 真题写法，在 `../Notes_AMIS1012_8H/`（先读 `00_8H_Plan.md`）。
+>
 > 🔺 **高分版**：讲师说只写定义拿不到高分，要有自己的具体情境。每一题的"情境 + 细节"写法在 `../Notes_AMIS1012_HighScore/`（先读 `00_HighScore_Method.md`）。这份 Exam Guide 继续用来看范围和出题地图。
 
 ## 0. 讲师 Revision Notes 对照（final 范围，最优先读）
