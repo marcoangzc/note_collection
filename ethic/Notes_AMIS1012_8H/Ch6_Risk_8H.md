@@ -1,6 +1,6 @@
 # Ch6 风险评估与可信赖运算 · Risk Assessment & Trustworthy Computing
 
-> ⏱ **建议 2 小时** · 📝 **每份 past year 的 Q2（25 分）都是这一章**，而且都是 case study（TAR、Cybertron、PQR、e-commerce 公司）
+> ⏱ **建议 1 小时 50 分** · 📝 **每份 past year 的 Q2（25 分）都是这一章**，而且都是 case study（TAR、Cybertron、PQR、e-commerce 公司）
 > 📖 范围 = 讲师 Revision Notes 的 Ch6 全部 6 节 + **8 steps**（讲师没写，但考过 3 次）
 > **怎么读**：每一节先看 ❓，自己想 5 秒 → 读"大白话" → 看例子 → 背 📖 讲师原句和 💬 答题句 → 最后看 ✅ 真题满分答案。
 

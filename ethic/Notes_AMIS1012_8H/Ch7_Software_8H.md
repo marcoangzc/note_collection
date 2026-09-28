@@ -1,6 +1,6 @@
 # Ch7 软件开发 · Software Development
 
-> ⏱ **建议 1 小时 45 分** · 📝 **每份 past year 的 Q3（25 分）都是这一章**（Ethan 的 ABC Bank 排队系统、banking app、payment app）
+> ⏱ **建议 1 小时 35 分** · 📝 **每份 past year 的 Q3（25 分）都是这一章**（Ethan 的 ABC Bank 排队系统、banking app、payment app）
 > 📖 范围 = 讲师 Revision Notes 的 Ch7 全部 4 节
 > **怎么读**：每一节先看 ❓，自己想 5 秒 → 读"大白话" → 看例子 → 背 📖 讲师原句和 💬 答题句 → 最后看 ✅ 真题满分答案。
 

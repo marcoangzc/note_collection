@@ -1,7 +1,8 @@
 # AMIS1012 Ethics in Computing · 8 小时读完 5 章（零基础版）
 
 > 这一套笔记只包含讲师在 **Revision Notes** 里写明 final 会考的 5 章：**Ch1、Ch2、Ch6、Ch7、Ch8**。
-> 每一节都是：**❓ 问题 → 🔑 双语关键词 → 📖 讲师原句 → 🌰 例子 → 💬 答题句 (EN) → 📝 真题怎么写**，章末有 **🔁 自测**和 **🧾 一页背诵**。
+> 零基础版：每一节都是 **❓ 问题 → 大白话（是什么 + 为什么）→ 🔑 双语关键词 → 📖 讲师原句 → 🌰 例子 → 💬 答题句 (EN) → ✅ 真题满分答案**，章末有 **🔁 自测**和 **🧾 一页背诵**。
+> 五份 past year（Oct 2024、Jan 2025、May 2025、Oct 2025、May 2026）里，这 5 章的**每一小题都有完整的英文满分答案**，可以直接背。
 > 想看更长的解释，或者每一题 past year 的完整满分答法：`../Notes_AMIS1012/`（详细版）、`../Notes_AMIS1012_HighScore/`（情境高分版）。
 
 ---
@@ -36,17 +37,21 @@
 
 | 时间 | 做什么 |
 |---|---|
-| **0:00 – 1:40** | **Ch6**：Risk = P × I、8 steps（自己画一次）、4 pillars、**CIA + 情境**、IT security policy、ISO 27001、NIST 5 functions |
-| 1:40 – 1:50 | 休息 |
-| **1:50 – 3:20** | **Ch7**：Waterfall vs Agile（看线索字选）、100× cheaper、manual / automation、**black-box vs white-box + 情境**、**PDCA（画图）**、5 quality attributes |
-| 3:20 – 3:30 | 休息 |
-| **3:30 – 5:10** | **Ch8**：IP / IPR 为什么重要、口诀"做法 / 名字 / 作品 / 秘密"、trademark 5 spectrum、copyright life + 50、trade secret 保护方法、**6 issues**、cybersquatting 4 种 |
-| 5:10 – 5:30 | 休息 + 吃东西 |
-| **5:30 – 6:30** | **Ch1**：**Morals / Ethics / Laws 表**（每年必考）、5 steps、3 issues for IT users、professionals、certifications |
-| **6:30 – 7:50** | **Ch2**：cybercrime、**passive vs active**、malware 表、**5 types of spam**、hackers / insiders / 3 categories |
+| **0:00 – 1:50** | **Ch6**：Risk = P × I、8 steps（自己画一次）、4 pillars、**CIA + 情境**、IT security policy、ISO 27001、NIST 5 functions |
+| 1:50 – 1:55 | 休息 |
+| **1:55 – 3:30** | **Ch7**：Waterfall vs Agile（看线索字选）、100× cheaper、manual / automation、**black-box vs white-box + 情境**、**PDCA（画图）**、5 quality attributes |
+| 3:30 – 3:35 | 休息 |
+| **3:35 – 5:25** | **Ch8**：IP / IPR 为什么重要、口诀"做法 / 名字 / 作品 / 秘密"、trademark 5 spectrum、copyright life + 50、trade secret 保护方法、**6 issues**、cybersquatting 4 种 |
+| 5:25 – 5:30 | 休息 |
+| **5:30 – 6:35** | **Ch1**：**Morals / Ethics / Laws 表**（每年必考）、5 steps、3 issues for IT users、professionals、certifications |
+| **6:35 – 7:50** | **Ch2**：cybercrime、**passive vs active**、malware 表、**5 types of spam**、hackers / insiders / 3 categories |
 | **7:50 – 8:00** | 最后：把 5 章的 **🧾 一页背诵**各看一次 |
 
-💡 每读完一章，**先做 🔁 自测**（遮住答案），错的回去看那一节。
+💡 **怎么读才读得完**：
+1. 每一节先读 **❓ + 大白话 + 表格**，确定自己懂了。
+2. **💬 答题句**要背，这是考试写的第一句。
+3. **✅ 满分答案**先挑分数高的读（CIA、black/white-box、选 IPR、morals/ethics/law、spam）；时间不够的，只读第一段就好。
+4. 每读完一章，**先做 🔁 自测**（遮住答案），错的回去看那一节。
 
 ---
 
@@ -78,8 +83,8 @@
 
 | 考点 | 考过 | 在哪 |
 |---|---|---|
-| **8 steps of risk assessment** | Oct 2024、Oct 2025（各 8 分）、May 2026（前两步 6 分） | Ch6 §1.1 |
+| **8 steps of risk assessment** | Oct 2024、Oct 2025（各 8 分）、May 2026（前两步 6 分） | Ch6 §1.3 |
 | **5 types of spam** | May 2025、Oct 2025（各 10 分） | Ch2 §6 |
 | **5 steps of ethical decision-making** | Oct 2024（5 分） | Ch1 §3 |
-| **Cybersquatting 4 types** | Jan 2025（10 分） | Ch8 §4.1 |
+| **Cybersquatting 4 types** | Jan 2025（10 分） | Ch8 §4.6 |
 | Exploit + patch | Oct 2024（4 分） | Ch2 §3 |

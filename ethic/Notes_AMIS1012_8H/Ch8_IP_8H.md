@@ -1,6 +1,6 @@
 # Ch8 知识产权 · Intellectual Property (IP)
 
-> ⏱ **建议 2 小时** · 📝 **每份 past year 的 Q4（25 分）都是这一章**，全部是 case study（Domitri 的加密算法、Cadiz 购物网站、Nintendo、Disney vs Edward、indie game）
+> ⏱ **建议 1 小时 50 分** · 📝 **每份 past year 的 Q4（25 分）都是这一章**，全部是 case study（Domitri 的加密算法、Cadiz 购物网站、Nintendo、Disney vs Edward、indie game）
 > 📖 范围 = 讲师 Revision Notes 的 Ch8 全部 4 节 + **cybersquatting 4 种类型**（讲师没写，但 Jan 2025 考了 10 分）
 > **怎么读**：每一节先看 ❓，自己想 5 秒 → 读"大白话" → 看例子 → 背 📖 讲师原句和 💬 答题句 → 最后看 ✅ 真题满分答案。
 

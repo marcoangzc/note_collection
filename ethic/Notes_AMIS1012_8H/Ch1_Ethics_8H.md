@@ -1,6 +1,6 @@
 # Ch1 道德导论 · Introduction to Ethics
 
-> ⏱ **建议 1 小时 15 分** · 📝 **Q1 前半（约 11 分）**：**Morals / Ethics / Laws 五份都考**
+> ⏱ **建议 1 小时 5 分** · 📝 **Q1 前半（约 11 分）**：**Morals / Ethics / Laws 五份都考**
 > 📖 范围 = 讲师 Revision Notes 的 Ch1 全部 6 节 + **5 steps of ethical decision-making**（讲师没写，但 Oct 2024 考了 5 分）
 > **怎么读**：每一节先看 ❓，自己想 5 秒 → 读"大白话" → 看例子 → 背 📖 讲师原句和 💬 答题句 → 最后看 ✅ 真题满分答案。
 
