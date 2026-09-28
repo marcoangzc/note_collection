@@ -5,6 +5,37 @@
 
 ---
 
+> 🔺 **高分版**：讲师说只写定义拿不到高分，要有自己的具体情境。每一题的"情境 + 细节"写法在 `../Notes_AMIS1012_HighScore/`（先读 `00_HighScore_Method.md`）。这份 Exam Guide 继续用来看范围和出题地图。
+
+## 0. 讲师 Revision Notes 对照（final 范围，最优先读）
+
+讲师发的 `exam tips/Revision Notes for AMIS1012 (1).pdf` 写明是 "the chapters involved for the finals"，里面**只有 Ch1、Ch2、Ch6、Ch7、Ch8**。这和五份 past year 的 Q1–Q4 结构完全一致。
+
+- ✅ **只读 Ch1、Ch2、Ch6、Ch7、Ch8。** 下面第 4 节计划里的 "Ch3–5 快速浏览" 可以删掉，省下的一小时拿去多做一份模拟考。
+- 讲师原话：*"give your own points and examples … leave no question empty."* → 每一点都要配一个**自己的**例子；不会的题也要写。
+
+**讲师 tips 和本笔记不一致的地方——考试照讲师写，再补一句：**
+
+| 主题 | 讲师 tips | 本笔记 | 考试怎么写 |
+|---|---|---|---|
+| NIST CSF Core | **5 functions**：Identify, Protect, Detect, Respond, Recover | CSF 2.0 的 6 functions（多了 Govern） | 先写讲师的 5 个，最后加一句 "(CSF 2.0 also adds **Govern**)" |
+| Patent 期限 | **15 years from grant**（Patents Act 1983） | 建议写 20 years from filing | 写 "15 years from the date of grant" 为主，括号补 "(current law: 20 years from filing)"。改卷的人对照的是讲师版本 |
+| Quality: Scalability | "Runs on many devices" | 指出这其实是 portability | 照讲师写；想加分可补一句 |
+
+**讲师 tips 里每一节 → 笔记位置（逐项打勾）：**
+
+| 讲师 tips | 笔记 |
+|---|---|
+| Ch1：What is ethics · Morals/Ethics/Laws · Why ethics in IT · IT professionals · 3 ethical issues of IT users · Certifications (vendor vs industry) | Ch1 §1, §3, §4–6 |
+| Ch2：Cybercrime (weapon/target, malicious/accidental) · User expectations · Commercial software & patches · Passive vs active (masquerade, replay, alteration, DoS) · Malware (virus/worm/trojan/botnet/rootkit/spam/phishing) · Hackers vs crackers · Malicious insiders · 3 cybercriminal categories | Ch2 §1–§4, hackers/insiders 节 |
+| Ch6：Risk = Probability × Impact · Assets/failure case · Trustworthy computing 4 principles · **CIA** · IT security policy · ISO 27001 (14 areas) · NIST (Core/Profiles/Tiers) | Ch6 §1–§6 |
+| Ch7：Waterfall vs Agile · **100× cheaper to fix early** · Manual/automation/dynamic · **Black-box vs white-box** · QA + **PDCA** · 5 quality attributes | Ch7 §1–§4 |
+| Ch8：IP definition & importance · IPR · Patent / Trademark (5-level spectrum) / Copyright (life + 50) / Trade secret · Issues: plagiarism, reverse engineering, open vs closed source, CI, TM infringement, cybersquatting | Ch8 §1–§5 |
+
+⚠️ tips 没写 **8-step risk assessment** 和 **5 steps of ethical decision-making**，但 past year 考过（8 steps 考了两次，各 8 分）。仍然要背。
+
+---
+
 ## 1. 考卷格式
 
 - **2 小时，4 题，全部要答，每题 25 分**（共 100 分）。每题约 30 分钟。
@@ -119,7 +150,7 @@
 | 13:00–14:00 | 午餐 + 休息 |
 | 14:00–15:00 | **Ch1**：morals/ethics/law 比较表 + Venn、5 steps、IT users 三个 issues |
 | 15:00–16:00 | **Ch2**：passive/active 判断规则、malware 比较表、5 spam、exploit/patch、hacker 类型 |
-| 16:00–17:00 | **Ch3–5 快速浏览**：只读每章的 Cheat sheet + 情境题答案（BrightHome、TechNova、SmartRetail） |
+| 16:00–17:00 | ~~Ch3–5 快速浏览~~ 讲师 tips 不含 Ch3–5 → 改做一份额外 past year（计时 1 小时，只写 Q2 + Q4 两题 case study） |
 | 17:00–18:30 | **模拟考**：挑一份 past year（建议 May 2026），计时 2 小时手写，对照满分答法 |
 | 20:00–21:00 | 复习错的部分；最后读一次每章的 Cheat sheet |
 
